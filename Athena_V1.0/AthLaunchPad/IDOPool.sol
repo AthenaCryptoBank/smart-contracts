@@ -172,7 +172,7 @@ contract IDOPool is Ownable, ReentrancyGuard {
     /**
      * @dev To determine whether investor can buy depending on the investor type
      */
-    function isParticipationTimeCrossed(InvestorType _investoryType) internal view returns (bool) {
+    function isParticipationTimeCrossed(InvestorType _investoryType) public view returns (bool) {
         uint256 lockPeriod = fundingPeriod.div(4);
         if (_investoryType == InvestorType.LEVEL_0) {
             return (now >= startTime.add(lockPeriod.mul(3)));

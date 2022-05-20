@@ -98,7 +98,7 @@ contract AthenaLaunchPadPoolFactory is Ownable {
      * - poolinfo currency cannot be address zero
      */
     //solhint-disable-next-line function-max-lines
-    function createPoolPublic(IDOInfo calldata poolInfo) external onlyOwner {
+    function createPoolPublic(IDOInfo calldata poolInfo) external onlyOwner returns (address) {
         require(poolInfo._token != poolInfo._currency, "Currency and Token can not be the same");
         require(poolInfo._token != address(0), "PoolInfo token cannot be address zero");
         require(poolInfo._currency != address(0), "PoolInfo currency cannot be address zero");
@@ -132,6 +132,8 @@ contract AthenaLaunchPadPoolFactory is Ownable {
             address(_idoPool),
             msg.sender
         );
+        
+        return address(_idoPool);
     }
 
     /**
